@@ -1,28 +1,13 @@
-from tkinter import *
-from distutils import extension
-from fileinput import filename
-import os , shutil
+from tkinter import Tk, Label, Entry, Button
+import utility
+
+def click_func():
+    utility.organise(e.get())
+    lable_2 = Label(root, text="Your files have been organised!")
+    lable_2.pack()
 
 root = Tk()
 root.title("File System Organizer")
-
-def organise(path):
-    files = os.listdir(path)
-
-    for file in files:
-        filename,extension = os.path.splitext(file)
-        extension = extension[1:]
-
-        if os.path.exists(path + '/' + extension):
-            shutil.move(path + '/' + file, path + '/' + extension + '/' + file)
-        else:
-            os.makedirs(path + '/' + extension)
-            shutil.move(path + '/' + file, path + '/' + extension + '/' + file)
-
-def click_func():
-    organise(e.get())
-    lable_2 = Label(root, text="Your files have been organised!")
-    lable_2.pack()
 
 lable_1 = Label(root, text="Enter your directory path :")
 lable_1.pack()
